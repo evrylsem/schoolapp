@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    background-color: rgb(169, 179, 136);
+}
+
+h1 {
+    text-align: center;
+}
+
+.page-head {
+    border: 2px dashed rgb(95, 111, 82);
+    background-color: rgb(225, 234, 193);
+    margin-bottom: 1rem;
+}
+
+table {
+    width: 100%;
+    border: 2px solid rgb(95, 111, 82);
+}
+
+table thead td {
+    text-align: center;
+    background-color: rgb(95, 111, 82);
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(254, 250, 224);
+}
+
+td {
+    width: 17rem;
+    text-align: center;
+    align-items: center;
+}
+
+table tbody tr {
+    background-color: rgb(254, 250, 224);
+}
+
+table tbody td {
+    padding: 1rem;
+}
+
+.students {
+    width: 99vw;
+    margin-top: 0.5rem;
+}
+
+.buttons {
+    text-align: center;
+    align-items: center;
+}
+
+.buttons button {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    height: 2.5rem;
+    width: 3rem;
+    cursor: pointer;
+}
+
+.buttons button img {
+    width: 75%;
+}
+
+.add-btn button {
+    background-color: rgb(95, 111, 82);
+    border: none;
+    cursor: pointer;
+    color: rgb(254, 250, 224);
+    font-size: 16px;
+    font-weight: bold;
+    height: 2rem;
+}
+
+
+

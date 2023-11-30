@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(133, 142, 105);
+}
+
+form {
+    padding: 2.05rem;
+    border: 1px dashed rgb(95, 111, 82);
+    height: 29.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+h3 {
+    font-size: 16px;
+    color: rgb(96, 96, 96);
+}
+
+.school-container {
+    align-items: center;
+    display: flex;
+    align-items: stretch;
+    height: 29.6rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.school-container img {
+    height: 100%;
+}
+
+.signup-container {
+    background-color: rgb(254, 250, 224);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 29.6rem;
+}
+
+.greetings {
+    margin-bottom: 2.5rem;
+}
+
+.input-fields {
+    text-align: center;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.input-fields input {
+    height: 2rem;
+    width: 14rem;
+    padding-left: 0.5rem;
+}
+
+.input-fields input::placeholder {
+    margin-left: 1rem;
+}
+
+.input-fields img {
+    margin-right: 0.5rem;
+}
+
+.buttons {
+    text-align: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.buttons button {
+    height: 2rem;
+    width: 5rem;
+}
+
+.register {
+    text-align: center;
+}
+
+#register-btn, #back-btn {
+    background-color: rgb(95, 111, 82);
+    border: none;
+    cursor: pointer;
+    color: rgb(254, 250, 224);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#back-btn {
+    margin-right: 0.6rem;
+}
