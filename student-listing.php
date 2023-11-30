@@ -9,7 +9,7 @@
 
     if(isset($_POST['delete-btn'])) {
         $idToDelete = $_POST['selected-stud'];
-        header("Location: delete-confirm.php?id=$idToDelete");
+        header("Location: delete-student.php?id=$idToDelete");
         exit();
     }
 

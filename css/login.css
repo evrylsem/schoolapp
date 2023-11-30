@@ -26,7 +26,6 @@ h1, h2 {
 }
 
 .school-container {
-    align-items: center;
     display: flex;
     align-items: stretch;
     height: 29.6rem;

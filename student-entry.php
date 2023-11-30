@@ -8,6 +8,8 @@
         $progstatement->bindParam(":collegeid", $college_id);
         $progstatement->execute();
 
+        echo "<option value='' disabled>Select Program</option>";
+
         while($row = $progstatement->fetch(PDO::FETCH_ASSOC)) {
             $progid = $row['progid'];
             $progname = $row['progfullname'];
@@ -49,6 +51,11 @@
         header('Location: student-entry.php');
         exit();
     }
+
+    if(isset($_POST["list-btn"])) {
+        header('Location: student-listing.php');
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -62,34 +69,34 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="image-container">
+        <img src="../usjr_app new/graphics/studentry.jpg" alt="">
+    </div>
+    <div class="entry-form">
         <form action="" method="post">
-            <div class="image-container">
-                <img src="../usjr_app new/graphics/school1.jpg" alt="">
+            <div class="entry-head">
+                <h1>Student Entry Form</h1>
             </div>
-            <div class="entry-form">
-                <div class="entry-head">
-                        <h1>Student Entry Form</h1>
-                </div>
-                <div class="input-fields">
-                    <p>Student ID: <br> <input type="text" name="student-id" id="student-id"></p>
+            <div class="input-fields">
+                <p>Student ID: <br> <input type="text" name="student-id" id="student-id"></p>
                     
-                </div>
-                <div class="input-fields">
-                    <p>First Name: <br> <input type="text" name="first-name" id="first-name"></p>
-                </div>
-                <div class="input-fields">
-                    <p>Middle Name: <br> <input type="text" name="mid-name" id="mid-name"></p>
-                </div>
-                <div class="input-fields">
-                    <p>Last Name: <br> <input type="text" name="last-name" id="last-name"></p>
-                </div>
-                <div class="input-fields">
-                    <p>College: <br>
-                        <select name="college-dept" id="college-dept">
-                            <option value="" disabled>Select College</option>
-                            <?php
-                                $sqlQuery = "SELECT * from colleges;";
+            </div>
+            <div class="input-fields">
+                <p>First Name: <br> <input type="text" name="first-name" id="first-name"></p>
+            </div>
+            <div class="input-fields">
+                <p>Middle Name: <br> <input type="text" name="mid-name" id="mid-name"></p>
+            </div>
+            <div class="input-fields">
+                <p>Last Name: <br> <input type="text" name="last-name" id="last-name"></p>
+            </div>
+            <div class="input-fields">
+                <p>College: <br>
+                    <select name="college-dept" id="college-dept" required>
+                        <option value=""></option>
+                        <option value="" disabled>Select College</option>
+                        <?php
+                            $sqlQuery = "SELECT * from colleges;";
                                 $collstatement = $pdoConnect->prepare($sqlQuery);
                                 $collstatement->execute();
 
@@ -99,24 +106,25 @@
                                     echo "<option value='$collegeid'>$collegename</option>";
                                 }
                             ?>
-                        </select>
-                    </p>
-                </div>
-                <div class="input-fields">
-                    <p>Program: <br>
-                        <select name="program" id="program">
-                            <option value="" disabled>Select Program</option>
-                        </select>
-                    </p>
-                </div>
-                <div class="input-fields">
-                    <p>Year: <br> <input type="text" name="year" id="year"></p>
-                </div>
-                <div class="buttons">
-                    <button name="clear-btn">Clear All</button>
-                    <button name="submit-btn">Submit</button>
-                </div>
-                <a href="student-listing.php">View All Students</a>
+                    </select>
+                </p>
+            </div>
+            <div class="input-fields">
+                <p>Program: <br>
+                    <select name="program" id="program" required> 
+                        <option value="" disabled>Select Program</option>
+                    </select>
+                </p>
+            </div>
+            <div class="input-fields">
+                <p>Year: <br> <input type="text" name="year" id="year"></p>
+            </div>
+            <div class="buttons">
+                <button name="clear-btn">Clear All</button>
+                <button name="submit-btn">Submit</button>
+            </div>
+            <div class="list-link">
+                <button name="list-btn" id="list-btn">View All Students</button>
             </div>
         </form>
     </div>
