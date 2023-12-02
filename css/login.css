@@ -80,19 +80,16 @@ h1, h2 {
 .buttons button {
     height: 2rem;
     width: 5rem;
-}
-
-.register {
-    text-align: center;
-}
-
-#login-btn {
     background-color: rgb(95, 111, 82);
     border: none;
     cursor: pointer;
     color: rgb(254, 250, 224);
     font-size: 16px;
     font-weight: bold;
+}
+
+.register {
+    text-align: center;
 }
 
 #signup-btn {

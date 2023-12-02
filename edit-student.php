@@ -51,75 +51,73 @@
     <link rel="stylesheet" href="../usjr_app new/css/edit-student.css">
 </head>
 <body>
-    <div class="container">
+    <div class="image-container">
+        <img src="../usjr_app new/graphics/studentry.jpg" alt="">
+    </div>
+    <div class="entry-form">
         <form action="" method="post">
-            <div class="image-container">
-                <img src="../usjr_app new/graphics/school1.jpg" alt="">
+            <div class="entry-head">
+                <h1>Update Student Entry</h1>
             </div>
-            <div class="entry-form">
-                <div class="entry-head">
-                        <h1>Update Student Entry</h1>
-                </div>
-                <div class="input-fields">
-                    <p>Student ID: <br> <input type="text" name="student-id" id="student-id" value="<?php echo $studentData['studid']; ?>" disabled></p>
-                </div>
-                <div class="input-fields">
-                    <p>First Name: <br> <input type="text" name="first-name" id="first-name" value="<?php echo $studentData['studfirstname']; ?>"></p>
-                </div>
-                <div class="input-fields">
-                    <p>Middle Name: <br> <input type="text" name="mid-name" id="mid-name" value="<?php echo $studentData['studmidname']; ?>"></p>
-                </div>
-                <div class="input-fields">
-                    <p>Last Name: <br> <input type="text" name="last-name" id="last-name" value="<?php echo $studentData['studlastname']; ?>"></p>
-                </div>
-                <div class="input-fields">
-                    <p>College: <br>
-                        <select name="college-dept" id="college-dept">
-                            <option value="" disabled>Select College</option>
-                            <?php
-                                $sqlQuery = "SELECT * from colleges;";
-                                $collstatement = $pdoConnect->prepare($sqlQuery);
-                                $collstatement->execute();
+            <div class="input-fields">
+                <p>Student ID: <br> <input type="text" name="student-id" id="student-id" value="<?php echo $studentData['studid']; ?>" disabled></p>
+            </div>
+            <div class="input-fields">
+                <p>First Name: <br> <input type="text" name="first-name" id="first-name" value="<?php echo $studentData['studfirstname']; ?>"></p>
+            </div>
+            <div class="input-fields">
+                <p>Middle Name: <br> <input type="text" name="mid-name" id="mid-name" value="<?php echo $studentData['studmidname']; ?>"></p>
+            </div>
+            <div class="input-fields">
+                <p>Last Name: <br> <input type="text" name="last-name" id="last-name" value="<?php echo $studentData['studlastname']; ?>"></p>
+            </div>
+            <div class="input-fields">
+                <p>College: <br>
+                    <select name="college-dept" id="college-dept">
+                        <option value="" disabled>Select College</option>
+                        <?php
+                            $sqlQuery = "SELECT * from colleges;";
+                            $collstatement = $pdoConnect->prepare($sqlQuery);
+                            $collstatement->execute();
 
-                                while($row = $collstatement->fetch(PDO::FETCH_ASSOC)) {
-                                    $collegeid = $row['collid'];
-                                    $collegename = $row['collfullname'];
-                                    $selected = ($collegeid == $studentData['studcollid']) ? 'selected' : '';
-                                    echo "<option value='$collegeid' $selected>$collegename</option>";
-                                }
-                            ?>
-                        </select>
-                    </p>
-                </div>
-                <div class="input-fields">
-                    <p>Program: <br>
-                        <select name="program" id="program">
-                            <option disabled>Select Program</option>
-                             <?php
-                                $sqlQuery2 = "SELECT * FROM programs";
-                                $progstatement = $pdoConnect->prepare($sqlQuery2);
-                                $progstatement->execute();
+                            while($row = $collstatement->fetch(PDO::FETCH_ASSOC)) {
+                                $collegeid = $row['collid'];
+                                $collegename = $row['collfullname'];
+                                $selected = ($collegeid == $studentData['studcollid']) ? 'selected' : '';
+                                echo "<option value='$collegeid' $selected>$collegename</option>";
+                            }
+                        ?>
+                    </select>
+                </p>
+            </div>
+            <div class="input-fields">
+                <p>Program: <br>
+                    <select name="program" id="program">
+                        <option disabled>Select Program</option>
+                        <?php
+                            $sqlQuery2 = "SELECT * FROM programs";
+                            $progstatement = $pdoConnect->prepare($sqlQuery2);
+                            $progstatement->execute();
                                 
-                                while($row = $progstatement->fetch(PDO::FETCH_ASSOC)) {
-                                    $progid = $row['progid'];
-                                    $progname = $row['progfullname'];
-                                    $selected = ($progid == $studentData['studprogid']) ? 'selected' : '';
-
-                                    echo "<option value='$progid' $selected>$progname</option>";
-                                }
-                                ?>
-                        </select>
-                    </p>
-                </div>
-                <div class="input-fields">
-                    <p>Year: <br> <input type="text" name="year" id="year" value="<?php echo $studentData['studyear']; ?>"></p>
-                </div>
-                <div class="buttons">
-                    <button name="cancel-btn">Cancel</button>
-                    <button name="update-btn">Update</button>
-                </div>
+                            while($row = $progstatement->fetch(PDO::FETCH_ASSOC)) {
+                                $progid = $row['progid'];
+                                $progname = $row['progfullname'];
+                                $selected = ($progid == $studentData['studprogid']) ? 'selected' : '';
+                                echo "<option value='$progid' $selected>$progname</option>";
+                            }
+                        ?>
+                    </select>
+                </p>
             </div>
-        </form>
+            <div class="input-fields">
+                <p>Year: <br> <input type="text" name="year" id="year" value="<?php echo $studentData['studyear']; ?>"></p>
+            </div>
+            <div class="buttons">
+                <button name="cancel-btn">Cancel</button>
+                <button name="update-btn">Update</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

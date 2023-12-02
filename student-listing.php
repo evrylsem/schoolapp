@@ -33,20 +33,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View All Students</title>
+    <title>List of Students</title>
     <link rel="icon" href="../usjr_app new/graphics/usjr-logo.png" type="image">
     <link rel="stylesheet" href="../usjr_app new/css/student-listing.css">
 </head>
 <body>
     <div class="container">
-        <div class="page-head">
-            <h1>Student Listing</h1>
-        </div>
-        <div class="pag-body">
-            <form method="post" class="add-btn">
-                <button name="add-btn">Add Student</button>
-                <button name="logout-btn">Logout</button>
-            </form>
+        <div class="nav-container">
+            <li id="students-link"><a href="student-listing.php">Students</a></li>
+            <li id="colleges-link"><a href="college-listing.php">Colleges</a></li>
+            <li><a href="" id="programs-link">Programs</a></li>
+            <li id="logout-link"><a href="login.php">Logout</a></li>
+        </div> 
+        <div class="page-body">
+            <div class="page-head">
+                <h1>Student Listing</h1>
+            </div>
             <div class="students">
                 <table>
                     <thead>
@@ -94,6 +96,12 @@
                         ?>
                     </tbody>
                 </table>
+            </div>
+            <div class="btn-container">
+                <form method="post" class="add-btn">
+                    <button name="add-btn" id="add-btn">Add Student</button>
+                    <button name="logout-btn" id="logout-btn">Logout</button>
+                </form>
             </div>
         </div>
     </div>

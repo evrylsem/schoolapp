@@ -11,7 +11,84 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
     background-color: rgb(133, 142, 105);
+}
 
+h1 {
+    text-align: center;
+}
+
+.entry-head {
+    margin-bottom: 1rem;
+}
+
+form {
+    padding: 2.05rem;
+    border: 1px dashed rgb(95, 111, 82);
+}
+
+.entry-form {
+    background-color: rgb(254, 250, 224);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 29rem;
+}
+
+.image-container {
+    display: flex;
+    align-items: stretch;
+    height: 29rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.image-container img {
+    height: 100%;
+}
+
+.input-fields input {
+    width: 18rem;
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+}
+
+.buttons {
+    text-align: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.buttons button {
+    height: 2rem;
+    width: 5.6rem;
+    background-color: rgb(95, 111, 82);
+    border: none;
+    cursor: pointer;
+    color: rgb(254, 250, 224);
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0.5rem;
+}
+
+.list-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#list-btn {
+    color: rgb(95, 111, 82);
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#list-btn:hover {
+    color: rgb(185, 148, 112);
 }

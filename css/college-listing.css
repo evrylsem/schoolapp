@@ -113,11 +113,11 @@ table tbody td {
     justify-content: space-around;
 }
 
-#students-link {
+#colleges-link {
     background-color: rgb(95, 111, 82);
 }
 
-#students-link a {
+#colleges-link a {
     color:  rgb(254, 250, 224);
 }
 

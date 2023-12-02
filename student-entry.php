@@ -28,7 +28,7 @@
         $year = $_POST['year'];
 
         if(empty($id) || empty($firstname) || empty($middlename) || empty($lastname) || empty($year)) {
-            echo "<script>alert('Please Fill In All Fields!'); window.location='student-entry.php'</script>";
+            echo "<script>alert('Please Fill In All Fields!');</script>";
         } else {
             $sqlQuery = "INSERT INTO students(studid, studfirstname, studmidname, studlastname, studcollid, studprogid, studyear) VALUES(:studid,:firstname,:middlename,:lastname,:college,:program,:yeartook);";
             $statement = $pdoConnect->prepare($sqlQuery);

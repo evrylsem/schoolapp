@@ -1,20 +1,28 @@
 <?php
     include_once("db.php");
 
-    $sqlQuery = "SELECT * FROM colleges;" ;
+    $sqlQuery = "SELECT * FROM colleges;";
     $statement = $pdoConnect->prepare($sqlQuery);
     $statement->execute();
 
     if(isset($_POST['delete-btn'])) {
         $idToDelete = $_POST['selected-coll'];
-        header("Location: delete-coll.php?id=$idToDelete");
+        header("Location: delete-college.php?id=$idToDelete");
         exit();
     }
 
     if(isset($_POST['edit-btn'])) {
         $idToEdit = $_POST['selected-coll'];
-        header("Location: edit-coll.php?id=$idToEdit");
+        header("Location: edit-college.php?id=$idToEdit");
         exit();
+    }
+
+    if(isset($_POST['add-btn'])) {
+        header("Location: college-entry.php");
+    }
+
+    if(isset($_POST['logout-btn'])) {
+        header("Location: login.php");
     }
 ?>
 
@@ -23,19 +31,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of College</title>
+    <title>List of Colleges</title>
     <link rel="icon" href="../usjr_app new/graphics/usjr-logo.png" type="image">
+    <link rel="stylesheet" href="../usjr_app new/css/college-listing.css">
 </head>
 <body>
     <div class="container">
-        <div class="page-head">
-            <h1>List of Colleges</h1>
-        </div>
-        <div class="pag-body">
-            <form method="post" class="add-btn">
-                <button name="add-btn">Add College</button>
-                <button name="logout-btn">Logout</button>
-            </form>
+        <div class="nav-container">
+            <li id="students-link"><a href="student-listing.php">Students</a></li>
+            <li id="colleges-link"><a href="college.php">Colleges</a></li>
+            <li><a href="" id="programs-link">Programs</a></li>
+            <li id="logout-link"><a href="login.php">Logout</a></li>
+        </div> 
+        <div class="page-body">
+            <div class="page-head">
+                <h1>List of Colleges</h1>
+            </div>
             <div class="students">
                 <table>
                     <thead>
@@ -71,6 +82,11 @@
                         ?>
                     </tbody>
                 </table>
+            </div>
+            <div class="btn-container">
+                <form method="post" class="add-btn">
+                    <button name="add-btn" id="add-btn">Add College</button>
+                </form>
             </div>
         </div>
     </div>
