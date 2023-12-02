@@ -92,7 +92,7 @@
             </div>
             <div class="input-fields">
                 <p>College: <br>
-                    <select name="college-dept" id="college-dept" required>
+                    <select name="college-dept" id="college-dept">
                         <option value=""></option>
                         <option value="" disabled>Select College</option>
                         <?php
@@ -111,7 +111,7 @@
             </div>
             <div class="input-fields">
                 <p>Program: <br>
-                    <select name="program" id="program" required> 
+                    <select name="program" id="program"> 
                         <option value="" disabled>Select Program</option>
                     </select>
                 </p>

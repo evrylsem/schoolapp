@@ -1,26 +1,25 @@
 <?php
     include_once("db.php");
 
-    $sqlQuery = "SELECT studid, studlastname, studfirstname, studmidname, collfullname, progfullname, studyear FROM students
-                INNER JOIN colleges ON studcollid = collid
-                INNER JOIN programs ON studprogid = progid";
+    $sqlQuery = "SELECT progid, progfullname, progshortname, collshortname FROM programs
+                 INNER JOIN colleges on progcollid = collid;";
     $statement = $pdoConnect->prepare($sqlQuery);
     $statement->execute();
 
     if(isset($_POST['delete-btn'])) {
-        $idToDelete = $_POST['selected-stud'];
-        header("Location: delete-student.php?id=$idToDelete");
+        $idToDelete = $_POST['selected-prog'];
+        header("Location: delete-program.php?id=$idToDelete");
         exit();
     }
 
     if(isset($_POST['edit-btn'])) {
-        $idToEdit = $_POST['selected-stud'];
-        header("Location: edit-student.php?id=$idToEdit");
+        $idToEdit = $_POST['selected-prog'];
+        header("Location: edit-program.php?id=$idToEdit");
         exit();
     }
 
     if(isset($_POST['add-btn'])) {
-        header("Location: student-entry.php");
+        header("Location: program-entry.php");
     }
 
     if(isset($_POST['logout-btn'])) {
@@ -33,9 +32,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Students</title>
+    <title>List of Programs</title>
     <link rel="icon" href="../usjr_app new/graphics/usjr-logo.png" type="image">
-    <link rel="stylesheet" href="../usjr_app new/css/student-listing.css">
+    <link rel="stylesheet" href="../usjr_app new/css/program-listing.css">
 </head>
 <body>
     <div class="container">
@@ -47,47 +46,38 @@
         </div> 
         <div class="page-body">
             <div class="page-head">
-                <h1>Student Listing</h1>
+                <h1>List of Programs</h1>
             </div>
-            <div class="students">
+            <div class="programs">
                 <table>
                     <thead>
-                        <td>Student ID</td>
-                        <td>Last Name</td>
-                        <td>First Name</td>
-                        <td>Middle Name</td>
-                        <td>College</td>
-                        <td>Program Enrolled</td>
-                        <td>Year</td>
+                        <td>Program ID</td>
+                        <td>Full Name</td>
+                        <td>Short Name</td>
+                        <td>College Name</td>
                         <td colspan="2"></td>
                     </thead>
                     <tbody>
                         <?php
                             while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                                 echo "<tr>";
-                                $id = $row['studid'];
-                                $firstname = $row['studfirstname'];
-                                $middlename = $row['studmidname'];
-                                $lastname = $row['studlastname'];
-                                $college = $row['collfullname'];
-                                $program = $row['progfullname'];
-                                $year = $row['studyear'];
+                                $id = $row['progid'];
+                                $fullname = $row['progfullname'];
+                                $shortname = $row['progshortname'];
+                                $collshortname = $row['collshortname'];
                                 echo "<td>$id</td>";
-                                echo "<td>$lastname</td>";
-                                echo "<td>$firstname</td>";
-                                echo "<td>$middlename</td>";
-                                echo "<td id='college-cell'>$college</td>";
-                                echo "<td id='program-cell'>$program</td>";
-                                echo "<td>$year</td>";
+                                echo "<td>$fullname</td>";
+                                echo "<td>$shortname</td>";
+                                echo "<td>$collshortname</td>";
                                 echo "<td class='buttons'>
                                         <form method='post'>
-                                            <input type='hidden' name='selected-stud' value='$id'>
+                                            <input type='hidden' name='selected-prog' value='$id'>
                                             <button id='edit-btn' name='edit-btn'><img src='../usjr_app new/graphics/edit-icon.png' alt=''></button>
                                         </form>
                                     </td>";
                                 echo "<td class='buttons'>
                                         <form method='post'>
-                                            <input type='hidden' name='selected-stud' value='$id'>
+                                            <input type='hidden' name='selected-prog' value='$id'>
                                             <button id='delete-btn' name='delete-btn'><img src='../usjr_app new/graphics/delete-icon.png' alt=''></button>
                                         </form>
                                     </td>";
@@ -99,8 +89,7 @@
             </div>
             <div class="btn-container">
                 <form method="post" class="add-btn">
-                    <button name="add-btn" id="add-btn">Add Student</button>
-                    <button name="logout-btn" id="logout-btn">Logout</button>
+                    <button name="add-btn" id="add-btn">Add Program</button>
                 </form>
             </div>
         </div>

@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(133, 142, 105);
+}
+
+form {
+    padding: 2.05rem;
+    border: 1px dashed rgb(95, 111, 82);
+}
+
+.image-container {
+    display: flex;
+    align-items: stretch;
+    height: 33.5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.image-container img {
+    height: 100%;
+}
+
+.entry-form {
+    background-color: rgb(254, 250, 224);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 33.5rem;
+}
+
+.input-fields {
+    margin: 0.4rem;
+}
+
+.input-fields input{
+    width: 18rem;
+    font-size: 15px;
+}
+
+#college {
+    width: 18rem;
+    font-size: 15px;
+}
+
+.buttons {
+    text-align: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.buttons button {
+    height: 2rem;
+    width: 5.5rem;
+    background-color: rgb(95, 111, 82);
+    border: none;
+    cursor: pointer;
+    color: rgb(254, 250, 224);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.list-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+#list-btn {
+    color: rgb(95, 111, 82);
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#list-btn:hover {
+    color: rgb(185, 148, 112);
+}

@@ -44,7 +44,7 @@
 </head>
 <body>
     <div class="image-container">
-        <img src="../usjr_app new/graphics/collegeentry.jpg" alt="">
+        <img src="../usjr_app new/graphics/collentry.jpg" alt="">
     </div>
     <div class="entry-form">
         <form action="" method="post">

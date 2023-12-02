@@ -39,15 +39,15 @@
     <div class="container">
         <div class="nav-container">
             <li id="students-link"><a href="student-listing.php">Students</a></li>
-            <li id="colleges-link"><a href="college.php">Colleges</a></li>
-            <li><a href="" id="programs-link">Programs</a></li>
+            <li id="colleges-link"><a href="college-listing.php">Colleges</a></li>
+            <li id="programs-link"><a href="program-listing.php">Programs</a></li>
             <li id="logout-link"><a href="login.php">Logout</a></li>
         </div> 
         <div class="page-body">
             <div class="page-head">
                 <h1>List of Colleges</h1>
             </div>
-            <div class="students">
+            <div class="colleges">
                 <table>
                     <thead>
                         <td>College ID</td>

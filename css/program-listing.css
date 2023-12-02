@@ -43,7 +43,7 @@ table thead td {
 }
 
 td {
-    width: 17rem;
+    width: 15rem;
     text-align: center;
     align-items: center;
 }
@@ -56,7 +56,7 @@ table tbody td {
     padding: 1rem;
 }
 
-.colleges {
+.programs {
     width: 99vw;
     margin-top: 0.5rem;
 }
@@ -113,11 +113,11 @@ table tbody td {
     justify-content: space-around;
 }
 
-#colleges-link {
+#programs-link {
     background-color: rgb(95, 111, 82);
 }
 
-#colleges-link a {
+#programs-link a {
     color:  rgb(254, 250, 224);
 }
 
