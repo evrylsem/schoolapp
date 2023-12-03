@@ -10,6 +10,7 @@ body {
     background-color: rgb(169, 179, 136);
     margin: 0;
     padding: 0;
+    width: 100vw;
 }
 
 h1 {
@@ -26,6 +27,7 @@ h1 {
     border: 2px dashed rgb(95, 111, 82);
     background-color: rgb(225, 234, 193);
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 table {
@@ -43,7 +45,6 @@ table thead td {
 }
 
 td {
-    width: 17rem;
     text-align: center;
     align-items: center;
 }
@@ -57,7 +58,7 @@ table tbody td {
 }
 
 .colleges {
-    width: 99vw;
+    width: 100%;
     margin-top: 0.5rem;
 }
 
@@ -90,7 +91,11 @@ table tbody td {
 }
 
 .btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .nav-container li {
@@ -127,6 +132,39 @@ table tbody td {
 
 #logout-link a {
     color: rgb(95, 111, 82);
+}
+
+.pages-container {
+    margin-top: 20px;
+}
+
+.pages-container ul {
+    display: flex;
+    justify-content: center;
+}
+
+.pages-container ul li a {
+    color: rgb(254, 250, 224);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.pages-container ul li a:hover {
+    color: rgb(185, 148, 112);
+}
+
+.pages-container ul li {
+    border: 1.5px dotted rgb(254, 250, 224);
+    padding: 1rem;
+    text-align: center;
+    list-style-type: none;
+}
+
+.page-index p {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(254, 250, 224);
+    font-style: italic;
 }
 
 

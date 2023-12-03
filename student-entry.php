@@ -1,23 +1,6 @@
 <?php
     include_once("db.php");
 
-    if(isset($_POST['college'])) {
-        $college_id = $_POST['college'];
-        $sqlQuery2 = "SELECT * FROM programs WHERE progcollid = :collegeid";
-        $progstatement = $pdoConnect->prepare($sqlQuery2);
-        $progstatement->bindParam(":collegeid", $college_id);
-        $progstatement->execute();
-
-        echo "<option value='' disabled>Select Program</option>";
-
-        while($row = $progstatement->fetch(PDO::FETCH_ASSOC)) {
-            $progid = $row['progid'];
-            $progname = $row['progfullname'];
-            echo "<option value='$progid'>$progname</option>";
-        }
-        exit();
-    }
-
     if(isset($_POST['submit-btn'])) {
         $id = $_POST['student-id'];
         $firstname = $_POST['first-name'];
@@ -113,6 +96,24 @@
                 <p>Program: <br>
                     <select name="program" id="program"> 
                         <option value="" disabled>Select Program</option>
+                        <?php
+                            if(isset($_POST['college'])) {
+                                $college_id = $_POST['college'];
+                                $sqlQuery2 = "SELECT * FROM programs WHERE progcollid = :collegeid";
+                                $progstatement = $pdoConnect->prepare($sqlQuery2);
+                                $progstatement->bindParam(":collegeid", $college_id);
+                                $progstatement->execute();
+                        
+                                echo "<option value='' disabled>Select Program</option>";
+                        
+                                while($row = $progstatement->fetch(PDO::FETCH_ASSOC)) {
+                                    $progid = $row['progid'];
+                                    $progname = $row['progfullname'];
+                                    echo "<option value='$progid'>$progname</option>";
+                                }
+                                exit();
+                            }
+                        ?>
                     </select>
                 </p>
             </div>
@@ -130,22 +131,22 @@
     </div>
 </body>
 <script>
-            $(document).ready(function(){
-                $('#college-dept').change(function(){
-                    var college = $("#college-dept").val();
-                    $.ajax({
-                        method: 'POST',
-                        url: 'student-entry.php',
-                        data: {college: college },
-                        success: function(response){
-                            $('#program').html(response);
-                        }
-                    });
-                });
-
-                $('button[name="clear-btn"]').on('click', function(){
-                    $('form')[0].reset();
-                });
+    $(document).ready(function(){
+        $('#college-dept').change(function(){
+            var college = $("#college-dept").val();
+            $.ajax({
+                method: 'POST',
+                url: 'student-entry.php',
+                data: {college: college },
+                success: function(response){
+                    $('#program').html(response);
+                }
             });
-        </script>
+        });
+
+        $('button[name="clear-btn"]').on('click', function(){
+            $('form')[0].reset();
+        });
+    });
+</script>
 </html>

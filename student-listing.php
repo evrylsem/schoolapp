@@ -1,11 +1,29 @@
 <?php
     include_once("db.php");
 
+    if(isset($_GET['page']) && $_GET['page'] !== "") {
+        $pageNo = $_GET['page'];
+    } else {
+        $pageNo = 1;
+    }
+
+    $limit = 10;
+    $start = ($pageNo - 1) * $limit;
+
     $sqlQuery = "SELECT studid, studlastname, studfirstname, studmidname, collfullname, progfullname, studyear FROM students
                 INNER JOIN colleges ON studcollid = collid
-                INNER JOIN programs ON studprogid = progid";
+                INNER JOIN programs ON studprogid = progid
+                ORDER BY studyear, studlastname
+                LIMIT $start, $limit";
     $statement = $pdoConnect->prepare($sqlQuery);
     $statement->execute();
+
+    $sqlQuery1 = "SELECT COUNT(*) as total_stud FROM students;";
+    $statement1 = $pdoConnect->prepare($sqlQuery1);
+    $statement1->execute();
+    $records = $statement1->fetch(PDO::FETCH_ASSOC);
+    $total_records = $records['total_stud'];
+    $numPages = ceil($total_records / $limit);
 
     if(isset($_POST['delete-btn'])) {
         $idToDelete = $_POST['selected-stud'];
@@ -100,8 +118,21 @@
             <div class="btn-container">
                 <form method="post" class="add-btn">
                     <button name="add-btn" id="add-btn">Add Student</button>
-                    <button name="logout-btn" id="logout-btn">Logout</button>
                 </form>
+                <div class="page-index">
+                        <p>Page <?php echo $pageNo ?> of <?php echo $numPages ?></p>
+                </div>
+            </div>
+            <div class="pages-container">
+                <ul>
+                    <!-- <li><a href="">&laquo; Previous</a></li> -->
+                    <?php
+                        for($index=1; $index<=$numPages; $index++) {
+                            echo "<li><a href='student-listing.php?page=$index'>$index</a></li>";
+                        }
+                    ?>
+                    <!-- <li><a href="">Next &raquo;</a></li> -->
+                </ul>
             </div>
         </div>
     </div>
