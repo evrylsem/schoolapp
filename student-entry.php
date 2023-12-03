@@ -75,20 +75,21 @@
             </div>
             <div class="input-fields">
                 <p>College: <br>
-                    <select name="college-dept" id="college-dept">
+                    <select name="college-dept" id="college-dept" onchange="programsDropdown()">
                         <option value=""></option>
                         <option value="" disabled>Select College</option>
                         <?php
-                            $sqlQuery = "SELECT * from colleges;";
-                                $collstatement = $pdoConnect->prepare($sqlQuery);
-                                $collstatement->execute();
+                            $sqlQuery1 = "SELECT * from colleges;";
+                            $statement1 = $pdoConnect->prepare($sqlQuery1);
+                            $statement1->execute();
+                            $collegeFetch = $statement1->fetchAll(PDO::FETCH_ASSOC);
 
-                                while($row = $collstatement->fetch(PDO::FETCH_ASSOC)) {
-                                    $collegeid = $row['collid'];
-                                    $collegename = $row['collfullname'];
-                                    echo "<option value='$collegeid'>$collegename</option>";
-                                }
-                            ?>
+                            foreach ($collegeFetch as $row) {
+                                $collegeid = $row['collid'];
+                                $collegename = $row['collfullname'];
+                                echo "<option value='$collegeid'>$collegename</option>";
+                            }
+                        ?>
                     </select>
                 </p>
             </div>
@@ -97,22 +98,11 @@
                     <select name="program" id="program"> 
                         <option value="" disabled>Select Program</option>
                         <?php
-                            if(isset($_POST['college'])) {
-                                $college_id = $_POST['college'];
-                                $sqlQuery2 = "SELECT * FROM programs WHERE progcollid = :collegeid";
-                                $progstatement = $pdoConnect->prepare($sqlQuery2);
-                                $progstatement->bindParam(":collegeid", $college_id);
-                                $progstatement->execute();
-                        
-                                echo "<option value='' disabled>Select Program</option>";
-                        
-                                while($row = $progstatement->fetch(PDO::FETCH_ASSOC)) {
-                                    $progid = $row['progid'];
-                                    $progname = $row['progfullname'];
-                                    echo "<option value='$progid'>$progname</option>";
-                                }
-                                exit();
-                            }
+                            // $college_id = $_POST['college'];
+                            $sqlQuery2 = "SELECT * FROM programs;";
+                            $statement2 = $pdoConnect->prepare($sqlQuery2);
+                            $statement2->execute();
+                            $programFetch = $statement2->fetchAll(PDO::FETCH_ASSOC);     
                         ?>
                     </select>
                 </p>
@@ -131,22 +121,24 @@
     </div>
 </body>
 <script>
-    $(document).ready(function(){
-        $('#college-dept').change(function(){
-            var college = $("#college-dept").val();
-            $.ajax({
-                method: 'POST',
-                url: 'student-entry.php',
-                data: {college: college },
-                success: function(response){
-                    $('#program').html(response);
-                }
-            });
+    var listPrograms = <?php echo json_encode($programFetch); ?>;
+
+    function programsDropdown () {
+        var collegeSelect = document.getElementById('college-dept');
+        var programSelect = document.getElementById('program');
+
+        programSelect.innerHTML = "<option value='' disabled>Select Program</option>";
+
+        var filtered = listPrograms.filter(function(program) {
+            return program.progcollid == collegeSelect.value;
         });
 
-        $('button[name="clear-btn"]').on('click', function(){
-            $('form')[0].reset();
+        filtered.forEach(function(program) {
+            var option = document.createElement('option');
+            option.value = program.progid;
+            option.text = program.progfullname;
+            programSelect.add(option);
         });
-    });
+    }
 </script>
 </html>

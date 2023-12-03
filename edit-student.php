@@ -16,8 +16,8 @@
         $firstname = $_POST['first-name'];
         $middlename = $_POST['mid-name'];
         $lastname = $_POST['last-name'];
-        $collid = $_POST['college-dept'];
-        $program = $_POST['program'];
+        $coll = $_POST['college-dept'];
+        $prog = $_POST['program'];
         $year = $_POST['year'];
 
         $sqlQuery1 = "UPDATE students SET studfirstname = :firstname, studmidname = :midname, studlastname = :lastname, studcollid = :collid, studprogid = :progid, studyear = :studyear WHERE studid = :id;";
@@ -25,8 +25,8 @@
         $statement1->bindParam(":firstname", $firstname);
         $statement1->bindParam(":midname", $middlename);
         $statement1->bindParam(":lastname", $lastname);
-        $statement1->bindParam(":collid", $collid);
-        $statement1->bindParam(":progid", $program);
+        $statement1->bindParam(":collid", $coll);
+        $statement1->bindParam(":progid", $prog);
         $statement1->bindParam(":studyear", $year);
         $statement1->bindParam(":id", $studentID);
         if($statement1->execute()) {
@@ -73,17 +73,21 @@
             </div>
             <div class="input-fields">
                 <p>College: <br>
-                    <select name="college-dept" id="college-dept">
+                    <select name="college-dept" id="college-dept" onchange="programsDropdown()">
+                        <option value=""></option>
                         <option value="" disabled>Select College</option>
                         <?php
-                            $sqlQuery = "SELECT * from colleges;";
-                            $collstatement = $pdoConnect->prepare($sqlQuery);
-                            $collstatement->execute();
+                            $sqlQuery1 = "SELECT * from colleges;";
+                            $statement1 = $pdoConnect->prepare($sqlQuery1);
+                            $statement1->execute();
+                            $collegeFetch = $statement1->fetchAll(PDO::FETCH_ASSOC);
 
-                            while($row = $collstatement->fetch(PDO::FETCH_ASSOC)) {
+                            $collid = $studentData['studcollid'];
+
+                            foreach ($collegeFetch as $row) {
                                 $collegeid = $row['collid'];
                                 $collegename = $row['collfullname'];
-                                $selected = ($collegeid == $studentData['studcollid']) ? 'selected' : '';
+                                $selected = ($collegeid == $collid) ? 'selected' : '';
                                 echo "<option value='$collegeid' $selected>$collegename</option>";
                             }
                         ?>
@@ -95,14 +99,17 @@
                     <select name="program" id="program">
                         <option disabled>Select Program</option>
                         <?php
-                            $sqlQuery2 = "SELECT * FROM programs";
-                            $progstatement = $pdoConnect->prepare($sqlQuery2);
-                            $progstatement->execute();
-                                
-                            while($row = $progstatement->fetch(PDO::FETCH_ASSOC)) {
+                            $sqlQuery2 = "SELECT * FROM programs;";
+                            $statement2 = $pdoConnect->prepare($sqlQuery2);
+                            $statement2->execute();
+                            $programFetch = $statement2->fetchAll(PDO::FETCH_ASSOC); 
+
+                            $programid = $studentData['studprogid'];
+
+                            foreach ($programFetch as $row) {
                                 $progid = $row['progid'];
                                 $progname = $row['progfullname'];
-                                $selected = ($progid == $studentData['studprogid']) ? 'selected' : '';
+                                $selected = ($progid == $programid) ? 'selected' : '';
                                 echo "<option value='$progid' $selected>$progname</option>";
                             }
                         ?>
@@ -120,4 +127,25 @@
         </div>
     </div>
 </body>
+<script>
+    var listPrograms = <?php echo json_encode($programFetch); ?>;
+
+    function programsDropdown () {
+        var collegeSelect = document.getElementById('college-dept');
+        var programSelect = document.getElementById('program');
+
+        programSelect.innerHTML = "<option value='' disabled>Select Program</option>";
+
+        var filtered = listPrograms.filter(function(program) {
+            return program.progcollid == collegeSelect.value;
+        });
+
+        filtered.forEach(function(program) {
+            var option = document.createElement('option');
+            option.value = program.progid;
+            option.text = program.progfullname;
+            programSelect.add(option);
+        });
+    }
+</script>
 </html>
