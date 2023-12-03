@@ -49,7 +49,7 @@
     <title>Student Entry Form</title>
     <link rel="icon" href="../usjr_app new/graphics/usjr-logo.png" type="image">
     <link rel="stylesheet" href="../usjr_app new/css/student-entry.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
 </head>
 <body>
     <div class="image-container">

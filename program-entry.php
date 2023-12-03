@@ -71,8 +71,9 @@
                             $sqlQuery2 = "SELECT * FROM colleges;";
                             $statement2 = $pdoConnect->prepare($sqlQuery2);
                             $statement2->execute();
+                            $college = $statement2->fetchAll(PDO::FETCH_ASSOC);
 
-                            while($row = $statement2->fetch(PDO::FETCH_ASSOC)) {
+                            foreach ($college as $row) {
                                 $collegeid = $row['collid'];
                                 $collegename = $row['collfullname'];
                                 echo "<option value='$collegeid'>$collegename</option>";
