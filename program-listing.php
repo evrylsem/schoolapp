@@ -71,7 +71,7 @@
                         <td>Program ID</td>
                         <td>Full Name</td>
                         <td>Short Name</td>
-                        <td>College Name</td>
+                        <td>College</td>
                         <td colspan="2"></td>
                     </thead>
                     <tbody>
